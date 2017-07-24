@@ -4,8 +4,8 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-// Require Click schema
-var Click = require("./models/click");
+// Require Models schema
+var Article = require("./models/Article");
 
 // Create a new express app
 var app = express();
@@ -42,7 +42,11 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+ // * `/api/saved` (get) - your components will use this to query MongoDB for all saved articles
 
+ // * `/api/saved` (post) - your components will use this to save an article to the database
+
+ // * `/api/saved` (delete) - your components will use this to delete a saved article in the database
 
 // -------------------------------------------------
 

@@ -31,6 +31,13 @@
   "bugs": {
     "url": "https://github.com/emilypo89/nytReactSearch/issues"
   },
+  "scripts": {
+    "dev": "concurrently \"react-scripts start\" \"node server\"",
+    "start": "react-scripts start $ node server",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "homepage": "https://github.com/emilypo89/nytReactSearch#readme",
   "proxy": "http://localhost:3001"
 }
