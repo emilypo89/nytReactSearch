@@ -3,11 +3,6 @@
 import React from 'react';
 
 class Saved extends React.Component {
-	constructor() {
-		super();
-	}
-
-
 	render() {
 		return (
 		<div className="panel panel-default">
