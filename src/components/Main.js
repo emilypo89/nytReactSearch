@@ -26,11 +26,7 @@ class Main extends React.Component {
       // If get get a result, return that result's formatted articles property
       if (response.data.response.docs) {
       	// push those results into the searchResults array
-    		var searchResults = this.state.searchResults
-				searchResults.push(response.data.response.docs)
-				this.setState({ searchResults: searchResults })
-		    console.log("Search Results");
-		    console.log(this.state.searchResults);
+				this.setState({ searchResults: response.data.response.docs});
       }
       // If we don't get any results, return an empty string
       return "";
@@ -38,13 +34,15 @@ class Main extends React.Component {
 	}
 	
 	render(){
+		console.log("Search Results");
+		console.log(this.state.searchResults);
 		return(
 			<div className="container">
 				<div className="jumbotron">
   				<h1>New York Times Article Search</h1>
   				<p>Search for articles from the New York Times and save the articles you'd like to keep.</p>
 				</div>
-				<Search makeRequest={this.makeRequest}/>
+				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults}/>
 				<Saved />
 			</div>
 		);
