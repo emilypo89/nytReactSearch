@@ -13,6 +13,10 @@ const helper = {
   // This method takes in an argument for what to post to the database
   saveArticles: function(articleData) {
     return axios.post("/api/saved", articleData);
+  },
+
+  deleteArticles: function(articleData) {
+  	return axios.delete("/api/saved/:id", articleData);
   }
 };
 

@@ -15,6 +15,9 @@ var ArticleSchema = new Schema({
   },
   byline: {
     type: String
+  },
+  url: {
+    type: String
   }
 });
 

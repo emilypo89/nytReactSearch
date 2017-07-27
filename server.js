@@ -1,4 +1,6 @@
-// Include Server Dependencies
+// -------------------------------------------------
+// Server Dependencies
+// -------------------------------------------------
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
@@ -22,8 +24,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("build"));
 
 // -------------------------------------------------
-
 // MongoDB configuration (Change this URL to your own DB)
+// -------------------------------------------------
 mongoose.connect("mongodb://localhost/nytreact");
 var db = mongoose.connection;
 
@@ -36,19 +38,16 @@ db.once("open", function() {
 });
 
 // -------------------------------------------------
+// ROUTES
+// -------------------------------------------------
+
 
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
- // * `/api/saved` (get) - your components will use this to query MongoDB for all saved articles
-
- // * `/api/saved` (post) - your components will use this to save an article to the database
-
- // * `/api/saved` (delete) - your components will use this to delete a saved article in the database
- // This is the route we will send GET requests to retrieve our most recent click data.
-// We will call this route the moment our page gets rendered
+// * `/api/saved` (get) - your components will use this to query MongoDB for all saved articles
 app.get("/api/saved", function(req, res) {
 
   // This GET request will search for the latest clickCount
@@ -63,37 +62,44 @@ app.get("/api/saved", function(req, res) {
   });
 });
 
-// This is the route we will send POST requests to save each click.
-// We will call this route the moment the "click" or "reset" button is pressed.
+// * `/api/saved` (post) - your components will use this to save an article to the database
 app.post("/api/saved", function(req, res) {
   // console.log(req.body);
-  var articleID = req.body.articleID;
   var article = req.body;
-  // console.log(articleID);
   console.log(article);
+  console.log(article.web_url);
+  console.log(article.headline.main);
+  console.log(article.byline.original);
+  console.log(article.pub_date);
 
 
-  // Note how this route utilizes the findOneAndUpdate function to update the clickCount
-  // { upsert: true } is an optional object we can pass into the findOneAndUpdate method
-  // If included, Mongoose will create a new document matching the description if one is not found
-  // Article.findOneAndUpdate({
-  //   articleID: articleID
-  // }, {
-  //   $set: {
-  //     searchResults: searchResults
-  //   }
-  // }, { upsert: true }).exec(function(err) {
+  var savedArticle = new Article({headline: article.headline.main, byline: article.byline.original, pubDate: article.pub_date, url: article.web_url});
 
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   else {
-  //     res.send("Updated Article!");
-  //   }
-  // });
+  savedArticle.save(function(err, savedArticle) {
+
+    if (err) {
+      return res.json({ error: 'there was an error saving the item' });
+    } else {
+      // console.log(savedItem)
+      return res.json(savedArticle);
+    }
+  });
 });
 
+// * `/api/saved` (delete) - your components will use this to delete a saved article in the database
+app.delete("/api/saved/:id", (req, res) => {
+  Article.remove({_id: req.params.id}, function (err, doc) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    console.log(doc);
+    return res.json(doc);
+  })
+})
 
+// -------------------------------------------------
+// Starting express server
 // -------------------------------------------------
 
 // Starting our express server
