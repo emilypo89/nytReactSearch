@@ -66,30 +66,31 @@ app.get("/api/saved", function(req, res) {
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
 app.post("/api/saved", function(req, res) {
-
+  // console.log(req.body);
   var articleID = req.body.articleID;
-  var article = parseInt(req.body.article);
+  var article = req.body;
+  // console.log(articleID);
+  console.log(article);
+
 
   // Note how this route utilizes the findOneAndUpdate function to update the clickCount
   // { upsert: true } is an optional object we can pass into the findOneAndUpdate method
   // If included, Mongoose will create a new document matching the description if one is not found
-  Article.findOneAndUpdate({
-    clickID: clickID
-  }, {
-    $set: {
-      title: title,
-      date: date,
-      url: url
-    }
-  }, { upsert: true }).exec(function(err) {
+  // Article.findOneAndUpdate({
+  //   articleID: articleID
+  // }, {
+  //   $set: {
+  //     searchResults: searchResults
+  //   }
+  // }, { upsert: true }).exec(function(err) {
 
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send("Updated Article!");
-    }
-  });
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   else {
+  //     res.send("Updated Article!");
+  //   }
+  // });
 });
 
 

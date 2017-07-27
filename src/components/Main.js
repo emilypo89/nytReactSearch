@@ -32,6 +32,17 @@ class Main extends React.Component {
       return "";
     }.bind(this));
 	}
+
+	saveButton = (event, index) => {
+		event.preventDefault();
+		console.log("index in save button function: " + index);
+		var chosenArticle = this.state.searchResults[index];
+		console.log(chosenArticle);
+		helpers.saveArticles(chosenArticle)
+        .then(function() {
+          console.log("Posted to MongoDB");
+        });
+	}
 	
 	render(){
 		console.log("Search Results");
@@ -42,7 +53,7 @@ class Main extends React.Component {
   				<h1>New York Times Article Search</h1>
   				<p>Search for articles from the New York Times and save the articles you'd like to keep.</p>
 				</div>
-				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults}/>
+				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults} saveButton={this.saveButton}/>
 				<Saved />
 			</div>
 		);

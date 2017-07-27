@@ -84,20 +84,24 @@ class Search extends React.Component {
           </form>
         </div>
       </div>
-      <div>
-      {this.props.searchResults.map((obj, index) =>
-        
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title" key={index}>{obj.headline.main}</h3>
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <h3 className="panel-title">Articles</h3>
+        </div>
+        <div className="panel-body">
+          {this.props.searchResults.map((obj, index) =>
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title" key={index}>{obj.headline.main}</h3>
+              </div>
+              <div className="panel-body">
+                <p key={index}>{obj.pub_date}</p>
+                <p key={index}>{obj.byline.original}</p>
+                <button type="button" onClick={(event) => this.props.saveButton(event, index)}>Save Article</button>
+              </div>
+            </div>)}
           </div>
-          <div className="panel-body">
-            <p key={index}>{obj.pub_date}</p>
-            <p key={index}>{obj.byline.original}</p>
-          </div>
-        </div>)}
-      </div>
-      
+        </div>
 		</div>	
 
 		);
