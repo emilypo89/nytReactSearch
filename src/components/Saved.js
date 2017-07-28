@@ -25,7 +25,7 @@ class Saved extends React.Component {
 // button to delete an article
 	deleteButton = (event, index) => {
 		event.preventDefault();
-		console.log("index in save button function: " + index);
+		console.log("index in delete button function: " + index._id);
 		var chosenArticle = this.state.savedArticles[index];
 		console.log(chosenArticle);
 		helpers.deleteArticles(chosenArticle)

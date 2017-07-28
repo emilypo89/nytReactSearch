@@ -1,6 +1,7 @@
 // Here we will utilize the axios library to perform GET/POST requests
 import axios from 'axios';
 
+
 var nytAPI = "084695a4f40f4643b10304a7232b2b08";
 
 // Exporting an object with methods for retrieving and posting data to our API
@@ -15,8 +16,8 @@ const helper = {
     return axios.post("/api/saved", articleData);
   },
 
-  deleteArticles: function(articleData) {
-  	return axios.delete("/api/saved/:id", articleData);
+  deleteArticles: function() {
+  	return axios.delete("/api/saved/:id");
   }
 };
 
