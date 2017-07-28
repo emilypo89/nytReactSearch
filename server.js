@@ -51,9 +51,7 @@ db.once("open", function() {
 
 
 // Main "/" Route. This will redirect the user to our rendered React application
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
+app.get("/", function(req, res) { res.sendFile(__dirname + "/build/static/index.html"); });
 
 // * `/api/saved` (get) - your components will use this to query MongoDB for all saved articles
 app.get("/api/saved", function(req, res) {
