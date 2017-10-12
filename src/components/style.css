@@ -1,0 +1,41 @@
+body{
+	background-color: #E1E5F2;
+	font-family: 'Exo 2', sans-serif;
+	color: #022B3A;
+}
+
+button,
+.btn .btn-primary {
+	background-color: #022B3A;
+	color: white;
+	border: 2px solid white;
+	padding: 5px;
+}
+
+a {
+	color: white;
+}
+
+.jumbotron {
+	background-color: #022b3A;
+	color: white;
+	border: 2px solid white;
+}
+ 
+.panel-default .panel-heading {
+	background-image: none;
+	background-color: #022B3A;
+	color: white;
+	border: 2px solid white;
+}
+
+.panel-body {
+	background-color: #BFDBF7;
+	border: 2px solid white;
+}
+
+#savedArticleBody,
+#searchResultBody {
+	background-color: #1F7A8C;
+	color: white;
+}

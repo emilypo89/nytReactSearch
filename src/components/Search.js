@@ -1,6 +1,7 @@
 // * **Search** - queries the NYT API for articles. Displays API search results from another possible **Query** component and **Results** component. Gives the user the ability to save an article to their Saved Articles.
 import React from 'react';
 import axios from 'axios';
+import './style.css';
 
 class Search extends React.Component {
 	constructor() {
@@ -28,7 +29,7 @@ class Search extends React.Component {
       this.state.beginYear,
       this.state.endYear
     );
-    this.props.refreshSavedArticles();
+    // this.props.refreshSavedArticles(this.state.topic);
   }
   // rendering the component on the page
 	render() {
@@ -67,7 +68,7 @@ class Search extends React.Component {
               <div className="panel-heading">
                 <h3 className="panel-title" key={index.id}>{obj.headline.main}</h3>
               </div>
-              <div className="panel-body">
+              <div className="panel-body" id="searchResultBody">
                 <p key={index.id}>{obj.pub_date}
                 <br/>{obj.byline.original}
                 <br/>

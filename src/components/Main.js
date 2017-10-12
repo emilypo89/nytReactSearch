@@ -6,6 +6,8 @@ import Saved from "./Saved";
 
 import helpers from "../utils/helpers";
 import axios from "axios";
+import './style.css';
+
 var nytAPI = "084695a4f40f4643b10304a7232b2b08";
 
 class Main extends React.Component {
@@ -46,7 +48,7 @@ class Main extends React.Component {
         });
 	}
 	
-	refreshSavedAritcles (articles) {
+	refreshSavedArticles (articles) {
 		console.log(articles);
 		this.setState({
 			savedArticles: articles
@@ -63,7 +65,7 @@ class Main extends React.Component {
   				<h1>New York Times Article Search</h1>
   				<p>Search for articles from the New York Times and save the articles you'd like to keep.</p>
 				</div>
-				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults} saveButton={this.saveButton} refreshSavedAritcles={this.state.refreshSavedAritcles}/>
+				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults} saveButton={this.saveButton} refreshSavedArticles={this.refreshSavedArticles}/>
 				<Saved />
 			</div>
 		);

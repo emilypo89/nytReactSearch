@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios'
 import helpers from "../utils/helpers";
+import './style.css';
 
 class Saved extends React.Component {
 	// saved the saved articles in the state of the component
@@ -25,7 +26,8 @@ class Saved extends React.Component {
 // button to delete an article
 	deleteButton = (event, index) => {
 		event.preventDefault();
-		console.log("index in delete button function: " + index._id);
+		console.log("index in delete button function: ");
+		console.log(index._id);
 		var chosenArticle = this.state.savedArticles[index];
 		console.log(chosenArticle);
 		helpers.deleteArticles(chosenArticle)
@@ -46,7 +48,7 @@ class Saved extends React.Component {
               <div className="panel-heading">
                 <h3 className="panel-title" key={index._id}>{obj.headline}</h3>
               </div>
-              <div className="panel-body">
+              <div className="panel-body" id="savedArticleBody">
                 <p key={index._id}>{obj.pubDate}
                 <br/> 
                 {obj.byline}
