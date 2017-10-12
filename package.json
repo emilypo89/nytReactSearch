@@ -33,5 +33,9 @@
     "url": "https://github.com/emilypo89/nytReactSearch/issues"
   },
   "homepage": "https://github.com/emilypo89/nytReactSearch#readme",
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devServer": {
+    "compress": true,
+    "public": "store-client-nestroia1.c9users.io" // That solved it
+  }
 }
