@@ -21,13 +21,14 @@ class Search extends React.Component {
   }
   // When a user submits...
   handleSubmit = event => {
-    event.preventDefault()
-    console.log('handleSumbit called')
+    event.preventDefault();
+    console.log('handleSumbit called');
     this.props.makeRequest(
       this.state.topic,
       this.state.beginYear,
       this.state.endYear
-    )
+    );
+    this.props.refreshSavedArticles();
   }
   // rendering the component on the page
 	render() {

@@ -12,7 +12,8 @@ class Main extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			searchResults: []
+			searchResults: [],
+			savedArticles: []
 		}
 	}
 
@@ -35,7 +36,8 @@ class Main extends React.Component {
 
 	saveButton = (event, index) => {
 		event.preventDefault();
-		console.log("index in save button function: " + index);
+		console.log("index in save button function: ");
+		console.log(index);
 		var chosenArticle = this.state.searchResults[index];
 		console.log(chosenArticle);
 		helpers.saveArticles(chosenArticle)
@@ -44,6 +46,14 @@ class Main extends React.Component {
         });
 	}
 	
+	refreshSavedAritcles (articles) {
+		console.log(articles);
+		this.setState({
+			savedArticles: articles
+		});
+		console.log(this.state.savedArticles); 
+	}
+
 	render(){
 		console.log("Search Results");
 		console.log(this.state.searchResults);
@@ -53,7 +63,7 @@ class Main extends React.Component {
   				<h1>New York Times Article Search</h1>
   				<p>Search for articles from the New York Times and save the articles you'd like to keep.</p>
 				</div>
-				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults} saveButton={this.saveButton}/>
+				<Search makeRequest={this.makeRequest} searchResults={this.state.searchResults} saveButton={this.saveButton} refreshSavedAritcles={this.state.refreshSavedAritcles}/>
 				<Saved />
 			</div>
 		);
