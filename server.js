@@ -94,6 +94,7 @@ app.post("/api/saved", function(req, res) {
 
 // * `/api/saved` (delete) - your components will use this to delete a saved article in the database
 app.delete("/api/saved/:id", (req, res) => {
+  console.log("made it to delete route")
   Article.remove({_id: req.params.id}, function (err, doc) {
     if (err) {
       console.log(err);

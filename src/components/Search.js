@@ -1,6 +1,5 @@
 // * **Search** - queries the NYT API for articles. Displays API search results from another possible **Query** component and **Results** component. Gives the user the ability to save an article to their Saved Articles.
 import React from 'react';
-import axios from 'axios';
 import './style.css';
 
 class Search extends React.Component {

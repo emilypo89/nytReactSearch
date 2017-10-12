@@ -1,6 +1,6 @@
 // * **Saved** - displays the Saved Articles that were searched and stored in the database
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import helpers from "../utils/helpers";
 import './style.css';
 
@@ -16,21 +16,27 @@ class Saved extends React.Component {
 // when the component renders the saved articles are pulled from the database and saved in the state
 	componentDidMount() {
 		axios.get('/api/saved').then(response => {
+			console.log("response.data");
 			console.log(response.data);
 			this.setState({
 				savedArticles: response.data
-			})
-		})
+			});
+		});
+		console.log("this.state.savedArticles");
+		console.log(this.state.savedArticles)
 	}
 
 // button to delete an article
 	deleteButton = (event, index) => {
+		console.log(this.state.savedArticles);
 		event.preventDefault();
 		console.log("index in delete button function: ");
-		console.log(index._id);
+		console.log(index);
 		var chosenArticle = this.state.savedArticles[index];
 		console.log(chosenArticle);
-		helpers.deleteArticles(chosenArticle)
+		var chosenArticleID = this.state.savedArticles[index]._id;
+		console.log(chosenArticleID);
+		helpers.deleteArticles(chosenArticleID)
         .then(function() {
           console.log("Deleted from MongoDB");
         });
